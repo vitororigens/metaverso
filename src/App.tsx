@@ -69,13 +69,6 @@ function App() {
     <div className="App">
       <style>
         {`
-        .App {
-          display: flex;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-          width: 100vw;
-        }
         .Container {
           position: relative; 
           display: flex;

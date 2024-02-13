@@ -1,0 +1,102 @@
+.App {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: brown;
+  }
+
+  .Container {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+  
+  }
+  
+  .Card{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .card1 {
+    position: absolute;
+    top: 265px;
+    left: 100px;
+    z-index: 1; 
+  }
+  
+  .card2 {
+    position: absolute;
+    top: 210px;
+    left: 180px;
+    z-index: 1; 
+  }
+  
+  .card3 {
+    position: absolute;
+    top: 100px;
+    left: 380px;
+    z-index: 1; 
+  }
+  
+  .card4 {
+    position: absolute;
+    top: 140px;
+    left: 500px;
+    z-index: 1; 
+  }
+  
+  .card5 {
+    position: absolute;
+    top: 220px;
+    left: 410px;
+    z-index: 1; 
+  }
+  
+  .card6{
+    position: absolute;
+    top: 295px;
+    left: 250px;
+    z-index: 1; 
+  }
+  
+  .card7 {
+    position: absolute;
+    top: 340px;
+    left: 380px;
+    z-index: 1; 
+  }
+  
+  .card8 {
+    position: absolute;
+    top: 450px;
+    left: 495px;
+    z-index: 1; 
+  }
+  
+  .card9 {
+    position: absolute;
+    top: 200px;
+    left: 650px;
+    z-index: 1; 
+  }
+  
+  .card10 {
+    position: absolute;
+    top: 310px;
+    left: 750px;
+    z-index: 1; 
+  }
+  
+  .Animacao{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 99;
+  }
