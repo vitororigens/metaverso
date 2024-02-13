@@ -81,7 +81,7 @@ function App() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 50%;
+          width: 900px;
         
         }
         
@@ -275,8 +275,8 @@ function App() {
       {animacaoDoor &&
         <div className='Animacao'>
           <img style={{
-            width: '95%',
-            height: '95%'
+            width: '100%',
+            height: '100%'
           }} src={city} alt='Entrando na cidade' />
         </div>
       }
