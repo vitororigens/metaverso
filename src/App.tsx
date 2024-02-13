@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import image from './assets/Montagem-da-cidade.svg';
 import personagemStoped from './assets/Personagem01.png';
 import city from "./assets/open-the-door.gif"
 import personagemWalking from './assets/walking.gif'
-import { link } from 'fs';
 
 interface Position {
   top: number;
@@ -32,27 +31,40 @@ function App() {
   const [personagemSize, setPersonagemSize] = useState<number>(100);
   const [animacaoDoor, setAnimacaoDoor] = useState(false)
   const [animacao, setAnimacao] = useState<Animacao>({ personagem: personagemStoped, direction: 'forward' })
+  const [linkDoPopup, setLinkDoPopup] = useState<string | null>(null);
+
+  useEffect(() => {
+    const doorTimeout = setTimeout(() => {
+      setAnimacaoDoor(false);
+      if (linkDoPopup) {
+        window.open(linkDoPopup); 
+      }
+    }, 4000); 
+    
+    return () => clearTimeout(doorTimeout);
+  }, [animacaoDoor]);
 
   const handleMovePersonagem = (top: number, left: number, popupName: string, animacao: string, direction: 'forward' | 'backward') => {
     setPersonagemPos({ top, left });
     setPopupStates((prevState) => ({ ...Object.fromEntries(Object.keys(prevState).map(key => [key, false])), [popupName]: true }));
+    setLinkDoPopup(null);
     setAnimacao({ personagem: animacao, direction });
 
     // Verifica se o personagem está indo para frente ou para trás
-    if (direction != 'backward') {
+    if (direction !== 'backward') {
       // Se for para trás, inverte a direção do personagem
       setAnimacao((prevState) => ({ ...prevState, direction: 'forward' }));
     }
   }
 
-  const handleFadeIn = (popupName: string) => {
+  const handleFadeIn = (popupName: string, link: string) => {
     setPersonagemSize(0);
     setTimeout(() => {
       setPopupStates((prevState) => ({ ...prevState, [popupName]: false }));
-      setAnimacaoDoor(true)
+      setLinkDoPopup(link); 
+      setAnimacaoDoor(true);
     }, 3000);
   };
-
   return (
     <div className="App">
       <style>
@@ -169,7 +181,7 @@ function App() {
         <div className="card1">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(245, 100, 'Artigos', personagemWalking, 'forward')} />
-            {popupStates['Artigos'] && <Popup link='https://www.ibchain.com.br/artigos/' text="Artigos" onClick={() => handleFadeIn('Artigos')} />}
+            {popupStates['Artigos'] && <Popup  text="Artigos" onClick={() => handleFadeIn('Artigos', 'https://www.ibchain.com.br/artigos/')} />}
           </div>
         </div>
 
@@ -177,7 +189,8 @@ function App() {
         <div className="card2">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(210, 180, 'Livros', personagemWalking, 'backward')} />
-            {popupStates['Livros'] && <Popup link='https://www.ibchain.com.br/livros/' text="Livros" onClick={() => handleFadeIn('Livros')} />}
+            {popupStates['Livros'] && <Popup  text="Livros" onClick={() => handleFadeIn('Livros', 'https://www.ibchain.com.br/livros/')} />}
+
           </div>
         </div>
 
@@ -185,7 +198,7 @@ function App() {
         <div className="card3">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(100, 380, 'Cursos', personagemWalking, 'forward')} />
-            {popupStates['Cursos'] && <Popup link='https://www.ibchain.com.br/cursos/' text="Cursos" onClick={() => handleFadeIn('Cursos')} />}
+            {popupStates['Cursos'] && <Popup  text="Cursos" onClick={() => handleFadeIn('Cursos', 'https://www.ibchain.com.br/cursos/')} />}
           </div>
         </div>
 
@@ -193,7 +206,7 @@ function App() {
         <div className="card4">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(140, 500, 'Revistas', personagemWalking, 'backward')} />
-            {popupStates['Revistas'] && <Popup link='revistas' text="Revistas" onClick={() => handleFadeIn('Revistas')} />}
+            {popupStates['Revistas'] && <Popup  text="Revistas" onClick={() => handleFadeIn('Revistas', 'https://www.ibchain.com.br/revista/')} />}
           </div>
         </div>
 
@@ -201,7 +214,7 @@ function App() {
         <div className="card5">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(220, 410, 'Quem Somos', personagemWalking, 'forward')} />
-            {popupStates['Quem Somos'] && <Popup link='https://www.ibchain.com.br/quem-somos/' text="Quem Somos" onClick={() => handleFadeIn('Quem Somos')} />}
+            {popupStates['Quem Somos'] && <Popup  text="Quem Somos" onClick={() => handleFadeIn('Quem Somos', 'https://www.ibchain.com.br/quem-somos/')} />}
           </div>
         </div>
 
@@ -209,7 +222,7 @@ function App() {
         <div className="card6">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(295, 250, 'Eventos', personagemWalking, 'backward')} />
-            {popupStates['Eventos'] && <Popup link='https://www.ibchain.com.br/eventos/' text="Eventos" onClick={() => handleFadeIn('Eventos')} />}
+            {popupStates['Eventos'] && <Popup text="Eventos" onClick={() => handleFadeIn('Eventos', 'https://www.ibchain.com.br/eventos/')} />}
           </div>
         </div>
 
@@ -217,7 +230,7 @@ function App() {
         <div className="card7">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(340, 380, 'Criptoverso', personagemWalking, 'forward')} />
-            {popupStates['Criptoverso'] && <Popup link='https://www.ibchain.com.br/criptoverso/' text="Criptoverso" onClick={() => handleFadeIn('Criptoverso')} />}
+            {popupStates['Criptoverso'] && <Popup  text="Criptoverso" onClick={() => handleFadeIn('Criptoverso', 'https://www.ibchain.com.br/criptoverso/')} />}
           </div>
         </div>
 
@@ -225,7 +238,7 @@ function App() {
         <div className="card8">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(450, 495, 'Criptopedia', personagemWalking, 'backward')} />
-            {popupStates['Criptopedia'] && <Popup link='https://www.ibchain.com.br/criptopedia/' text="Criptopedia" onClick={() => handleFadeIn('Criptopedia')} />}
+            {popupStates['Criptopedia'] && <Popup  text="Criptopedia" onClick={() => handleFadeIn('Criptopedia', 'https://www.ibchain.com.br/criptopedia/')} />}
           </div>
         </div>
 
@@ -233,7 +246,7 @@ function App() {
         <div className="card9">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(200, 650, 'Relatórios', personagemWalking, 'forward')} />
-            {popupStates['Relatórios'] && <Popup link='https://www.ibchain.com.br/relatorios/' text="Relatórios" onClick={() => handleFadeIn('Relatórios')} />}
+            {popupStates['Relatórios'] && <Popup  text="Relatórios" onClick={() => handleFadeIn('Relatórios', 'https://www.ibchain.com.br/relatorios/')} />}
           </div>
         </div>
 
@@ -241,7 +254,7 @@ function App() {
         <div className="card10">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(310, 750, 'Notícias', personagemWalking, 'backward')} />
-            {popupStates['Notícias'] && <Popup link='https://www.ibchain.com.br/noticias/' text="Notícias" onClick={() => handleFadeIn('Notícias')} />}
+            {popupStates['Notícias'] && <Popup  text="Notícias" onClick={() => handleFadeIn('Notícias', 'https://www.ibchain.com.br/noticias/')} />}
           </div>
         </div>
 
@@ -254,8 +267,8 @@ function App() {
             position: 'absolute',
             top: personagemPos.top,
             left: personagemPos.left,
-            transform: animacao.direction === 'backward' ? 'scaleX(1)' : 'scaleX(-1)', // Inverte a imagem horizontalmente se a direção for backward
-            transition: 'height 3s, top 3s, left 3s, transform 0.3s', // Adiciona transform à transição para suavizar a inversão
+            transform: animacao.direction === 'backward' ? 'scaleX(1)' : 'scaleX(-1)', 
+            transition: 'height 3s, top 3s, left 3s, transform 0.3s', 
           }}
         />
       </div>
@@ -276,7 +289,7 @@ export default App;
 interface props {
   text: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  link: string;
+  link?: string;
 }
 
 
