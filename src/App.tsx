@@ -3,6 +3,7 @@ import image from './assets/Montagem-da-cidade.svg';
 import personagemStoped from './assets/Personagem01.png';
 import city from "./assets/open-the-door.gif"
 import personagemWalking from './assets/walking.gif'
+import { link } from 'fs';
 
 interface Position {
   top: number;
@@ -61,7 +62,7 @@ function App() {
           text-align: center;
           justify-content: center;
           align-items: center;
-          width: 100%;
+          width: 100vw;
         }
         .Container {
           position: relative; 
@@ -168,7 +169,7 @@ function App() {
         <div className="card1">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(245, 100, 'Artigos', personagemWalking, 'forward')} />
-            {popupStates['Artigos'] && <Popup text="Artigos" onClick={() => handleFadeIn('Artigos')} />}
+            {popupStates['Artigos'] && <Popup link='https://www.ibchain.com.br/artigos/' text="Artigos" onClick={() => handleFadeIn('Artigos')} />}
           </div>
         </div>
 
@@ -176,7 +177,7 @@ function App() {
         <div className="card2">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(210, 180, 'Livros', personagemWalking, 'backward')} />
-            {popupStates['Livros'] && <Popup text="Livros" onClick={() => handleFadeIn('Livros')} />}
+            {popupStates['Livros'] && <Popup link='https://www.ibchain.com.br/livros/' text="Livros" onClick={() => handleFadeIn('Livros')} />}
           </div>
         </div>
 
@@ -184,7 +185,7 @@ function App() {
         <div className="card3">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(100, 380, 'Cursos', personagemWalking, 'forward')} />
-            {popupStates['Cursos'] && <Popup text="Cursos" onClick={() => handleFadeIn('Cursos')} />}
+            {popupStates['Cursos'] && <Popup link='https://www.ibchain.com.br/cursos/' text="Cursos" onClick={() => handleFadeIn('Cursos')} />}
           </div>
         </div>
 
@@ -192,7 +193,7 @@ function App() {
         <div className="card4">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(140, 500, 'Revistas', personagemWalking, 'backward')} />
-            {popupStates['Revistas'] && <Popup text="Revistas" onClick={() => handleFadeIn('Revistas')} />}
+            {popupStates['Revistas'] && <Popup link='revistas' text="Revistas" onClick={() => handleFadeIn('Revistas')} />}
           </div>
         </div>
 
@@ -200,7 +201,7 @@ function App() {
         <div className="card5">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(220, 410, 'Quem Somos', personagemWalking, 'forward')} />
-            {popupStates['Quem Somos'] && <Popup text="Quem Somos" onClick={() => handleFadeIn('Quem Somos')} />}
+            {popupStates['Quem Somos'] && <Popup link='https://www.ibchain.com.br/quem-somos/' text="Quem Somos" onClick={() => handleFadeIn('Quem Somos')} />}
           </div>
         </div>
 
@@ -208,7 +209,7 @@ function App() {
         <div className="card6">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(295, 250, 'Eventos', personagemWalking, 'backward')} />
-            {popupStates['Eventos'] && <Popup text="Eventos" onClick={() => handleFadeIn('Eventos')} />}
+            {popupStates['Eventos'] && <Popup link='https://www.ibchain.com.br/eventos/' text="Eventos" onClick={() => handleFadeIn('Eventos')} />}
           </div>
         </div>
 
@@ -216,7 +217,7 @@ function App() {
         <div className="card7">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(340, 380, 'Criptoverso', personagemWalking, 'forward')} />
-            {popupStates['Criptoverso'] && <Popup text="Criptoverso" onClick={() => handleFadeIn('Criptoverso')} />}
+            {popupStates['Criptoverso'] && <Popup link='https://www.ibchain.com.br/criptoverso/' text="Criptoverso" onClick={() => handleFadeIn('Criptoverso')} />}
           </div>
         </div>
 
@@ -224,7 +225,7 @@ function App() {
         <div className="card8">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(450, 495, 'Criptopedia', personagemWalking, 'backward')} />
-            {popupStates['Criptopedia'] && <Popup text="Criptopedia" onClick={() => handleFadeIn('Criptopedia')} />}
+            {popupStates['Criptopedia'] && <Popup link='https://www.ibchain.com.br/criptopedia/' text="Criptopedia" onClick={() => handleFadeIn('Criptopedia')} />}
           </div>
         </div>
 
@@ -232,7 +233,7 @@ function App() {
         <div className="card9">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(200, 650, 'Relatórios', personagemWalking, 'forward')} />
-            {popupStates['Relatórios'] && <Popup text="Relatórios" onClick={() => handleFadeIn('Relatórios')} />}
+            {popupStates['Relatórios'] && <Popup link='https://www.ibchain.com.br/relatorios/' text="Relatórios" onClick={() => handleFadeIn('Relatórios')} />}
           </div>
         </div>
 
@@ -240,7 +241,7 @@ function App() {
         <div className="card10">
           <div className="Card">
             <Button onClick={() => handleMovePersonagem(310, 750, 'Notícias', personagemWalking, 'backward')} />
-            {popupStates['Notícias'] && <Popup text="Notícias" onClick={() => handleFadeIn('Notícias')} />}
+            {popupStates['Notícias'] && <Popup link='https://www.ibchain.com.br/noticias/' text="Notícias" onClick={() => handleFadeIn('Notícias')} />}
           </div>
         </div>
 
@@ -275,10 +276,11 @@ export default App;
 interface props {
   text: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  link: string;
 }
 
 
-export function Popup({text, onClick}: props){ 
+export function Popup({text, onClick, link}: props){ 
   return(
     <div className="Popup">
       <style>
@@ -316,7 +318,7 @@ export function Popup({text, onClick}: props){
         }
         `}
       </style>
-        <div className='Button' onClick={onClick} ><text className="Text">{text}</text></div>
+        <div className='Button' onClick={onClick} ><link href={link}></link><text className="Text">{text}</text></div>
     </div>
   )
 }
