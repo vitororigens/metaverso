@@ -275,8 +275,8 @@ function App() {
       {animacaoDoor &&
         <div className='Animacao'>
           <img style={{
-            width: '80%',
-            height: '80%'
+            width: '95%',
+            height: '95%'
           }} src={city} alt='Entrando na cidade' />
         </div>
       }
