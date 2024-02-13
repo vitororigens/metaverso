@@ -37,7 +37,7 @@ function App() {
     const doorTimeout = setTimeout(() => {
       setAnimacaoDoor(false);
       if (linkDoPopup) {
-        window.open(linkDoPopup); 
+        window.location.href = linkDoPopup; // Navigate to the URL directly
       }
     }, 4000); 
     
