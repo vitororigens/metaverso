@@ -1,0 +1,28 @@
+.Bola{
+    width: 30px;
+    height: 30px;
+    background-color: #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    transition: 1s;
+  }
+  .Bola:hover{
+    background-color: #0099FF;
+
+  }
+  
+  .Circulo{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    border: 2px solid  #FFF; 
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
+  }
+  .Circulo:hover{
+    border: 2px solid  #0099FF; 
+
+  }
